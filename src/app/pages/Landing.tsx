@@ -17,18 +17,27 @@ const stats = [
   { value: '12,500+', label: 'Jobs Posted' },
   { value: '3,200+',  label: 'Companies'   },
   { value: '48,000+', label: 'Candidates'  },
-  { value: '89%',     label: 'Placement Rate' },
+  { value: '89%',     label: 'Hiring Rate' },
 ];
 
 const categories = [
-  { label: 'Software Engineering', icon: Code2,        count: 3240 },
-  { label: 'Product Design',       icon: Palette,      count: 980  },
-  { label: 'Data & Analytics',     icon: BarChart3,    count: 1540 },
-  { label: 'Marketing',            icon: Megaphone,    count: 720  },
-  { label: 'Finance',              icon: DollarSign,   count: 860  },
-  { label: 'Healthcare',           icon: Stethoscope,  count: 610  },
-  { label: 'Education',            icon: GraduationCap,count: 430  },
+  { label: 'Technology', icon: Code2,        count: 3240 },
+  { label: 'Finance',       icon: Palette,      count: 980  },
+  { label: 'Healthcare',     icon: BarChart3,    count: 1540 },
+  { label: 'Education',            icon: Megaphone,    count: 720  },
+  { label: 'Manufacturing',              icon: DollarSign,   count: 860  },
+  { label: 'Retail',           icon: Stethoscope,  count: 610  },
+  { label: 'Energy',            icon: GraduationCap,count: 430  },
+  { label: 'Transportation',           icon: Settings,     count: 570  },
+  { label: 'Hospitality',           icon: Settings,     count: 570  },
+  { label: 'Construction',           icon: Settings,     count: 570  },
+  { label: 'Agriculture',           icon: Settings,     count: 570  },
+  { label: 'Media',           icon: Settings,     count: 570  },
+  { label: 'Telecommunications',           icon: Settings,     count: 570  },
+  { label: 'Government',           icon: Settings,     count: 570  },
+  { label: 'NonProfit',           icon: Settings,     count: 570  },
   { label: 'Operations',           icon: Settings,     count: 570  },
+  { label: 'Other',           icon: Settings,     count: 570  },
 ];
 
 const featuredJobs = [
@@ -82,12 +91,12 @@ const steps = [
   },
   {
     num: '02', icon: Search, title: 'Discover Opportunities',
-    desc: 'Browse thousands of internships and jobs. Filter by role, location, salary, and company size.',
+    desc: 'Browse thousands of internships and jobs. Filter by industry, location, and salary.',
     color: '#EB6B25',
   },
   {
     num: '03', icon: TrendingUp, title: 'Apply & Get Hired',
-    desc: 'Apply with one click, track every application in real time, and land your dream opportunity.',
+    desc: 'Apply with one click, track every application, and land your dream opportunity.',
     color: '#22C55E',
   },
 ];
@@ -144,16 +153,6 @@ export default function Landing() {
 
             {/* Left — copy */}
             <div>
-              {/* Pill badge */}
-              <div className="mb-5">
-                <span className={isWireframe
-                  ? 'border-2 border-gray-400 text-black text-sm px-3 py-1 font-bold'
-                  : 'inline-flex items-center gap-1.5 bg-[#2563EB]/10 text-[#2563EB] text-sm px-3 py-1 rounded-full font-medium border border-[#2563EB]/20'}>
-                  {!isWireframe && <span className="w-1.5 h-1.5 rounded-full bg-[#22C55E] inline-block"></span>}
-                  500+ new jobs added this week
-                </span>
-              </div>
-
               <h1 className={isWireframe
                 ? 'text-4xl font-bold text-black mb-4 leading-tight'
                 : 'text-5xl font-bold text-[#0F172A] mb-4 leading-tight'}>
@@ -168,7 +167,7 @@ export default function Landing() {
                 ? 'text-lg text-gray-700 mb-8'
                 : 'text-lg text-gray-500 mb-8 leading-relaxed'}>
                 Masar connects ambitious students and professionals with top companies
-                offering internships and full-time roles. Your path starts here.
+                offering internships and full-time roles. Your path. Your Future.
               </p>
 
               {/* Search bar */}
@@ -184,16 +183,7 @@ export default function Landing() {
                       : 'pl-9 h-10 border-0 focus-visible:ring-0 shadow-none'}
                   />
                 </div>
-                <div className={`w-px self-stretch ${isWireframe ? 'bg-gray-400 mx-1' : 'bg-gray-200 mx-1'}`} />
-                <div className="relative flex-1">
-                  <MapPin className={`absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 ${isWireframe ? 'text-black' : 'text-gray-400'}`} />
-                  <Input
-                    placeholder="City or Remote..."
-                    className={isWireframe
-                      ? 'pl-9 border-2 border-gray-300 h-10'
-                      : 'pl-9 h-10 border-0 focus-visible:ring-0 shadow-none'}
-                  />
-                </div>
+                
                 <Button
                   className={isWireframe
                     ? 'h-10 px-5 border-2 border-gray-600'
@@ -203,20 +193,7 @@ export default function Landing() {
                   Search
                 </Button>
               </div>
-
-              {/* Quick links */}
-              <div className={`flex items-center gap-2 flex-wrap text-sm mb-8 ${isWireframe ? 'text-black' : 'text-gray-500'}`}>
-                <span>Popular:</span>
-                {['React Developer', 'Data Analyst', 'Product Design', 'Remote'].map((tag) => (
-                  <Link key={tag} to="/jobs">
-                    <span className={isWireframe
-                      ? 'border border-gray-400 px-2 py-0.5 hover:bg-gray-100 cursor-pointer'
-                      : 'bg-gray-100 hover:bg-gray-200 text-gray-600 px-2.5 py-0.5 rounded-full cursor-pointer transition-colors'}>
-                      {tag}
-                    </span>
-                  </Link>
-                ))}
-              </div>
+            </div>
 
             {/* Right — live preview card */}
             <div className="hidden lg:flex flex-col gap-4">
@@ -226,15 +203,12 @@ export default function Landing() {
                   <p className={isWireframe ? 'font-bold text-black text-sm' : 'text-sm font-semibold text-[#0F172A]'}>
                     Latest Openings
                   </p>
-                  <span className={isWireframe
-                    ? 'text-xs border border-gray-400 px-2 py-0.5'
-                    : 'text-xs bg-[#22C55E]/10 text-[#16a34a] border border-[#22C55E]/25 px-2 py-0.5 rounded-full font-medium'}>
-                    Live
-                  </span>
                 </div>
                 {[
                   { logo: 'T', color: '#2563EB', title: 'Frontend Developer Intern', co: 'TechCorp', salary: '$25–35/hr', badge: 'Internship' },
                   { logo: 'S', color: '#EB6B25', title: 'Software Engineer',          co: 'StartupXYZ', salary: '$120k+',    badge: 'Full-time' },
+                  { logo: 'D', color: '#22C55E', title: 'Product Design Intern',       co: 'DesignStudio', salary: '$20–30/hr', badge: 'Internship' },
+                  { logo: 'D', color: '#22C55E', title: 'Product Design Intern',       co: 'DesignStudio', salary: '$20–30/hr', badge: 'Internship' },
                   { logo: 'D', color: '#22C55E', title: 'Product Design Intern',       co: 'DesignStudio', salary: '$20–30/hr', badge: 'Internship' },
                 ].map((j, i) => (
                   <div key={i} className={`flex items-center gap-3 py-3 ${i < 2 ? (isWireframe ? 'border-b-2 border-gray-200' : 'border-b border-gray-100') : ''}`}>
@@ -253,23 +227,6 @@ export default function Landing() {
                       : 'text-xs bg-[#2563EB]/10 text-[#2563EB] px-2 py-0.5 rounded-full flex-shrink-0'}>
                       {j.badge}
                     </span>
-                  </div>
-                ))}
-              </div>
-
-              {/* Stats mini-cards row */}
-              <div className="grid grid-cols-3 gap-3">
-                {[
-                  { val: '12.5k+', lbl: 'Open Roles', col: '#2563EB' },
-                  { val: '3.2k+',  lbl: 'Companies',  col: '#EB6B25' },
-                  { val: '89%',    lbl: 'Hired',       col: '#22C55E' },
-                ].map((s) => (
-                  <div key={s.lbl} className={`${card} p-4 text-center`}>
-                    <p className={isWireframe ? 'text-xl font-bold text-black' : 'text-xl font-bold'}
-                      style={!isWireframe ? { color: s.col } : {}}>
-                      {s.val}
-                    </p>
-                    <p className={isWireframe ? 'text-xs text-gray-600' : 'text-xs text-gray-500 mt-0.5'}>{s.lbl}</p>
                   </div>
                 ))}
               </div>
@@ -528,6 +485,10 @@ export default function Landing() {
       ══════════════════════════════════════════ */}
       <section className={isWireframe ? 'py-16 bg-white border-b-2 border-gray-400' : 'py-16 bg-[#F8FAFC] border-b border-gray-100'}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10">
+            <h2 className={sectionTitle}>Get Started</h2>
+            <p className={sectionSubtitle}>Your jeurny starts here.</p>
+          </div>
           <div className="grid md:grid-cols-2 gap-6">
 
             {/* Candidates card */}
@@ -628,7 +589,7 @@ export default function Landing() {
                 </span>
               </div>
               <p className={isWireframe ? 'text-sm text-gray-700' : 'text-sm text-gray-400 leading-relaxed'}>
-                Connecting talent with opportunity. Your path to the right career starts here.
+                Your Path. Your Future.
               </p>
             </div>
 
@@ -638,7 +599,7 @@ export default function Landing() {
                 For Candidates
               </p>
               <ul className="space-y-2">
-                {['Browse Jobs', 'Internships', 'Create Profile', 'Application Tracking'].map((item) => (
+                {['Browse Jobs', 'Create Profile', 'Application Tracking'].map((item) => (
                   <li key={item}>
                     <Link to="/jobs">
                       <span className={isWireframe
@@ -658,7 +619,7 @@ export default function Landing() {
                 For Companies
               </p>
               <ul className="space-y-2">
-                {['Post a Job', 'Manage Applicants', 'Company Profile', 'Pricing'].map((item) => (
+                {['Post a Job', 'Manage Applicants', 'Company Profile'].map((item) => (
                   <li key={item}>
                     <Link to="/company/post-job">
                       <span className={isWireframe
@@ -678,7 +639,7 @@ export default function Landing() {
                 Support
               </p>
               <ul className="space-y-2">
-                {['Help Center', 'Privacy Policy', 'Terms of Use', 'Contact Us'].map((item) => (
+                {['Help Center', 'Privacy Policy', 'Terms of Use'].map((item) => (
                   <li key={item}>
                     <span className={isWireframe
                       ? 'text-sm text-gray-700 hover:text-black cursor-pointer'
@@ -693,19 +654,10 @@ export default function Landing() {
           </div>
 
           {/* Bottom bar */}
-          <div className={`flex flex-col sm:flex-row items-center justify-between gap-3 pt-6 ${isWireframe ? 'border-t-2 border-gray-400' : 'border-t border-gray-800'}`}>
+          <div className={`flex flex-col sm:flex-row items-center justify-center gap-3 pt-6 ${isWireframe ? 'border-t-2 border-gray-400' : 'border-t border-gray-800'}`}>
             <p className={isWireframe ? 'text-sm text-gray-600' : 'text-sm text-gray-500'}>
               © 2026 Masar. All rights reserved.
             </p>
-            <div className="flex items-center gap-4">
-              {['Privacy', 'Terms', 'Cookies'].map((item) => (
-                <span key={item} className={isWireframe
-                  ? 'text-sm text-gray-600 hover:text-black cursor-pointer'
-                  : 'text-sm text-gray-500 hover:text-white transition-colors cursor-pointer'}>
-                  {item}
-                </span>
-              ))}
-            </div>
           </div>
         </div>
       </footer>
