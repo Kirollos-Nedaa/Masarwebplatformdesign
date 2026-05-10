@@ -17,6 +17,8 @@ import ApplicantManagement from "./pages/ApplicantManagement";
 import AdminDashboard from "./pages/AdminDashboard";
 import SavedJobs from "./pages/SavedJobs";
 import ChangePassword from "./pages/ChangePassword";
+import NotFound from "./pages/NotFound";
+import Unauthorized from "./pages/Unauthorized";
 
 export const router = createBrowserRouter([
   {
@@ -40,6 +42,8 @@ export const router = createBrowserRouter([
       { path: "company/applicants/:jobId", Component: ApplicantManagement },
       { path: "admin/dashboard", Component: AdminDashboard },
       { path: "change-password", Component: ChangePassword },
+      { path: "unauthorized", Component: Unauthorized },
+      { path: "*", Component: NotFound },
     ],
   },
 ]);
